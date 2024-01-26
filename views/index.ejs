@@ -1,0 +1,46 @@
+<%- include("partials/header.ejs") %>
+
+
+
+
+    <div class="container">
+        <h1 class="title"> Blogs </h1>
+
+        <% if(locals.count) {%>
+            <%= count %>
+                <% } %>
+
+                    <div class="blogs">
+                        <% if (!locals.uploadedBlogs) {%>
+                            <h3> No Blogs are Posted. </h3>
+
+                            <% %>
+                                <% } else {%>
+                                    <% uploadedBlogs.forEach((post,index)=>{ %>
+                                        <div class="single-blog">
+                                            <div class="blog-topic">
+                                                <div>
+                                                    <%=post.topic %>
+                                                </div>
+                                                <form action="/delete/<%= index %>">
+                                                    <button>delete</button>
+                                                </form>
+                                            </div>
+                                            <div class="blog-article">
+                                                <%=post.article %>
+                                            </div>
+                                            <div class="blog-author">
+                                                -<%=post.author %>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- <form action="/update/<%= index %>" method="POST">
+                        <button>update</button>
+                    </form> -->
+                                        <% })}; %>
+                    </div>
+    </div>
+
+
+    <%- include("partials/footer.ejs") %>
